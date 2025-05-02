@@ -29,8 +29,9 @@ http.route({
                 status: 400,
             });
         }
-
+        
         const payload = await request.json();
+
         const body = JSON.stringify(payload);
 
         const wh = new Webhook(webhookSecret);
@@ -65,7 +66,6 @@ http.route({
                     clerkId: id,
                 });
             } catch (error) {
-                console.log('Error creating user:', error);
                 return new Response('Error creating user', { status: 500 });
             }
         }
@@ -85,7 +85,6 @@ http.route({
                     image: image_url,
                 });
             } catch (error) {
-                console.log('Error updating user:', error);
                 return new Response('Error updating user', { status: 500 });
             }
         }
@@ -147,8 +146,6 @@ http.route({
                 fitness_level,
                 dietary_restrictions,
             } = payload;
-
-            console.log('Payload is here:', payload);
 
             const model = genAI.getGenerativeModel({
                 model: 'gemini-2.0-flash-001',

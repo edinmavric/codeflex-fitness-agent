@@ -30,7 +30,6 @@ const GenerateProgramPage = () => {
                     (args[0] &&
                         args[0].toString().includes('Meeting has ended')))
             ) {
-                console.log('Ignoring known error: Meeting has ended');
                 return; // don't pass to original handler
             }
 
@@ -66,14 +65,12 @@ const GenerateProgramPage = () => {
     // setup event listeners for vapi
     useEffect(() => {
         const handleCallStart = () => {
-            console.log('Call started');
             setConnecting(false);
             setCallActive(true);
             setCallEnded(false);
         };
 
         const handleCallEnd = () => {
-            console.log('Call ended');
             setCallActive(false);
             setConnecting(false);
             setIsSpeaking(false);
@@ -81,12 +78,10 @@ const GenerateProgramPage = () => {
         };
 
         const handleSpeechStart = () => {
-            console.log('AI started Speaking');
             setIsSpeaking(true);
         };
 
         const handleSpeechEnd = () => {
-            console.log('AI stopped Speaking');
             setIsSpeaking(false);
         };
         const handleMessage = (message: any) => {
@@ -103,7 +98,6 @@ const GenerateProgramPage = () => {
         };
 
         const handleError = (error: any) => {
-            console.log('Vapi Error', error);
             setConnecting(false);
             setCallActive(false);
         };
@@ -145,7 +139,6 @@ const GenerateProgramPage = () => {
                     },
                 });
             } catch (error) {
-                console.log('Failed to start call', error);
                 setConnecting(false);
             }
         }
